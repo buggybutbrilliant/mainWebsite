@@ -1,0 +1,111 @@
+.footer {
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-8);
+}
+
+.footer__main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  padding-bottom: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .footer__main {
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: start;
+  }
+}
+
+/* Brand */
+.footer__logo {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.footer__tagline {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Contact */
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.footer__contact-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.footer__email {
+  color: var(--accent);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: opacity var(--transition-fast);
+}
+
+.footer__email:hover {
+  opacity: 0.75;
+}
+
+/* Social */
+.footer__social {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+
+}
+
+@media (min-width: 768px) {
+  .footer__social {
+    justify-content: flex-end;
+  }
+}
+
+.footer__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  transition:
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.footer__social-link:hover {
+  color: var(--accent);
+  border-color: var(--border-accent);
+  box-shadow: 0 0 16px var(--accent-glow);
+  background-color: var(--accent-glow);
+}
+
+/* Bottom bar */
+.footer__bottom {
+  border-top: 1px solid var(--border-subtle);
+  padding: var(--space-3) 0;
+}
+
+.footer__bottom p {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  text-align: center;
+}

@@ -1,0 +1,62 @@
+.cta {
+  overflow: hidden;
+}
+
+.cta__inner {
+  position: relative;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Radial glow behind heading */
+.cta__glow {
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(ellipse at center, var(--accent-glow-strong) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cta .section-label,
+.cta__heading,
+.cta__subtext,
+.cta__buttons {
+  position: relative;
+  z-index: 1;
+}
+
+.cta__heading {
+  margin-bottom: var(--space-3);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.cta__subtext {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-6);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta__buttons {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .cta__buttons {
+    flex-direction: column;
+  }
+
+  .cta__buttons .btn {
+    width: 100%;
+  }
+}

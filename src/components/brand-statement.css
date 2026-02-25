@@ -1,0 +1,73 @@
+.brand-statement__content {
+  max-width: 800px;
+  margin: 0 auto var(--space-8);
+  text-align: center;
+}
+
+.brand-statement__quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  font-style: normal;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.brand-statement__quote em {
+  font-style: normal;
+}
+
+/* Pillars */
+.brand-statement__pillars {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .brand-statement__pillars {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.pillar-card {
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-primary);
+  transition:
+    border-color var(--transition-smooth),
+    box-shadow var(--transition-smooth),
+    transform var(--transition-smooth);
+}
+
+.pillar-card:hover {
+  border-color: var(--border-accent);
+  box-shadow: 0 0 32px var(--accent-glow);
+  transform: translateY(-4px);
+}
+
+.pillar-icon {
+  font-size: 1.75rem;
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+.pillar-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+  letter-spacing: -0.01em;
+}
+
+.pillar-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
