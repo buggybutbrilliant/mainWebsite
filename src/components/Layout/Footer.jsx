@@ -55,24 +55,6 @@ export default function Footer() {
             >
               <GithubIcon />
             </a>
-            <a
-              href="https://linkedin.com/in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer__social-link"
-              aria-label="LinkedIn"
-            >
-              <LinkedinIcon />
-            </a>
-            <a
-              href="https://instagram.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer__social-link"
-              aria-label="Instagram"
-            >
-              <InstagramIcon />
-            </a>
           </div>
         </div>
 
