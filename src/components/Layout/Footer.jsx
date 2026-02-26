@@ -37,7 +37,7 @@ export default function Footer() {
           <div className="footer__contact">
             <span className="footer__contact-label">Get in touch</span>
             <a
-              href="mailto:frombugs2brilliance@gmail.com"
+              href="mailto:frombugs2brilliance@gmail.com?subject=Project%20Inquiry"
               className="footer__email"
             >
               frombugs2brilliance@gmail.com
