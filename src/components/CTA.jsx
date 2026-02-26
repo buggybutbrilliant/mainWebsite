@@ -22,7 +22,7 @@ export default function CTA() {
             <CustomButton
               label="Start a Project"
               variant="primary"
-              href="mailto:hello@buggybutbrilliant.dev"
+              href="mailto:frombugs2brilliance@gmail.com?subject=Project%20Inquiry"
             />
             <CustomButton
               label="See Our Work"
