@@ -40,7 +40,7 @@ npm run preview
 ```
 buggybutbrilliant/
 ├── public/
-│   ├── videos/intro.mp4        ← Drop your hero video here
+│   ├── videos/intro.mp4      
 │   ├── images/
 │   └── favicon.ico
 ├── src/
@@ -61,35 +61,10 @@ buggybutbrilliant/
 ```
 
 ---
-
-## Adding Your Hero Video
-
-Place your intro video at:
-```
-public/videos/intro.mp4
-```
-
-Recommended specs:
-- Format: MP4 (H.264)
-- Duration: 10–30 seconds
-- Resolution: 1920×1080 or 1280×720
-- Bitrate: 2–4 Mbps (keep under 10MB for fast loading)
-- Loop-friendly: start and end frames should match
-
----
-
-## Deployment
-
-Works out of the box on:
-- **Vercel** — `vercel deploy`
-- **Netlify** — drag the `dist/` folder or connect repo
-
----
-
 ## Customization
 
 All design tokens are in `src/styles/variables.css`. Change the accent color, typography, spacing, and radius values from one file.
 
 ---
 
-© 2025 BuggyButBrilliant. Built with intention.
+© 2026 BuggyButBrilliant. Built with intention.
