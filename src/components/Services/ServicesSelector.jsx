@@ -35,7 +35,17 @@ export default function ServicesSelector() {
   const [activeService, setActiveService] = useState(null);
 
   const handleSelect = (id) => {
-    setActiveService((prev) => (prev === id ? null : id));
+    const isClosing = activeService === id;
+    setActiveService(isClosing ? null : id);
+
+    if (!isClosing) {
+      setTimeout(() => {
+        const cardGroup = document.getElementById(`service-group-${id}`);
+        if (cardGroup) {
+          cardGroup.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
   };
 
   return (
@@ -49,7 +59,7 @@ export default function ServicesSelector() {
           {SERVICES.map((service) => {
             const DetailComponent = SERVICE_COMPONENTS[service.id];
             return (
-              <div key={service.id} className="service-card-group">
+              <div key={service.id} className="service-card-group" id={`service-group-${service.id}`}>
                 <button
                   className={`service-card${activeService === service.id ? ' service-card--active' : ''}`}
                   onClick={() => handleSelect(service.id)}

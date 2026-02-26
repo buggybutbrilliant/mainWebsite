@@ -652,3 +652,78 @@
   line-height: 1.65;
   margin: 0;
 }
+
+@media (max-width: 639px) {
+  .service-detail__inner {
+    padding: var(--space-3);
+  }
+
+  .service-detail {
+    padding: var(--space-3) 0 var(--space-2);
+  }
+
+  .poster-chips {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .poster-chip {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .coming-soon-block {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .video-timeline {
+    padding-left: 1.25rem;
+  }
+
+  .service-split {
+    gap: var(--space-4);
+  }
+
+  .carousel {
+    overflow: hidden;
+  }
+
+  .carousel__expanded {
+    height: auto;
+    min-height: 0;
+  }
+
+  .carousel__main-img {
+    width: 100%;
+    height: auto;
+    max-height: 60vw;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .carousel__thumbs {
+    gap: 0.5rem;
+  }
+
+  .carousel__thumb {
+    height: 52px;
+    min-width: 72px;
+    width: 72px;
+  }
+
+  .dot-list {
+    gap: 0.75rem;
+  }
+
+  .services__subheading {
+    font-size: 1rem;
+  }
+
+  .service-card-group {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+}
