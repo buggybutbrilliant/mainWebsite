@@ -19,6 +19,17 @@ export default function ImageCarousel({ images, label, altPrefix }) {
         <button className="carousel__arrow carousel__arrow--right" onClick={next} aria-label="Next" type="button">
           &#8250;
         </button>
+        <div className="carousel__nav-mobile">
+          <button className="carousel__arrow-mob" onClick={prev} aria-label="Previous" type="button">
+            &#8249; Prev
+          </button>
+          <span className="carousel__counter-inline">
+            {active + 1} / {images.length}
+          </span>
+          <button className="carousel__arrow-mob" onClick={next} aria-label="Next" type="button">
+            Next &#8250;
+          </button>
+        </div>
       </div>
 
       <p className="carousel__counter">

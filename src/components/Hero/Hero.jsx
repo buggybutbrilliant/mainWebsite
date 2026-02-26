@@ -8,18 +8,7 @@ export default function Hero() {
 
   return (
     <section className="hero" id="home" aria-label="Hero">
-      {/* Background Video */}
-      <video
-        className="hero__video"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-hidden="true"
-      >
-        <source src="/videos/" type="video/mp4" />
-      </video>
+      <img className="hero__bg" src="/herobg.jpg" alt="" aria-hidden="true" loading="eager" />
 
       {/* Dark overlay */}
       <div className="hero__overlay" aria-hidden="true" />
@@ -34,7 +23,7 @@ export default function Hero() {
         </span>
 
         <h1 className="hero__title anim-fadeInUp anim-delay-2">
-          Buggy<span className="text-accent">But</span><br />Brilliant
+          Buggy<span className="text-accent">But</span>Brilliant
         </h1>
 
         <p className="hero__tagline anim-fadeInUp anim-delay-3">

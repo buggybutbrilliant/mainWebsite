@@ -38,49 +38,45 @@ export default function ServicesSelector() {
     setActiveService((prev) => (prev === id ? null : id));
   };
 
-  const ActiveComponent = activeService ? SERVICE_COMPONENTS[activeService] : null;
-
   return (
     <section className="section services" id="services">
       <div className="container">
-        <span className="section-label">SERVICES</span>
+        <span className="section-label">Our offerings</span>
         <h2 className="services__heading">What We Build</h2>
-        <p className="services__subheading">
-          Every engagement starts with something a little rough. Our work is about turning that honest v1 into something fast,
-          clear, and shippable.
-        </p>
+        <p className="services__subheading">Three focused disciplines. One execution mindset.</p>
 
-        {/* Selector Cards */}
-        <div className="services__grid">
-          {SERVICES.map((service) => (
-            <button
-              key={service.id}
-              className={`service-card${activeService === service.id ? ' service-card--active' : ''}`}
-              onClick={() => handleSelect(service.id)}
-              aria-expanded={activeService === service.id}
-              aria-controls="service-detail-panel"
-              type="button"
-            >
-              <div className="service-card__top">
-                <span className="service-card__icon" aria-hidden="true">
-                  {service.icon}
-                </span>
-                <h3 className="service-card__title">{service.name}</h3>
+        <div className="services__grid services__grid--mobile-interleaved">
+          {SERVICES.map((service) => {
+            const DetailComponent = SERVICE_COMPONENTS[service.id];
+            return (
+              <div key={service.id} className="service-card-group">
+                <button
+                  className={`service-card${activeService === service.id ? ' service-card--active' : ''}`}
+                  onClick={() => handleSelect(service.id)}
+                  aria-expanded={activeService === service.id}
+                  type="button"
+                >
+                  <span className="service-card__icon">{service.icon}</span>
+                  <h3 className="service-card__name">{service.name}</h3>
+                  <p className="service-card__desc">{service.description}</p>
+                  <span className="service-card__tap">TAP TO EXPLORE THE DETAILS</span>
+                </button>
+                <div
+                  className={`service-detail-panel service-detail-panel--mobile${activeService === service.id ? ' service-detail-panel--open' : ''}`}
+                >
+                  {activeService === service.id && <DetailComponent />}
+                </div>
               </div>
-              <p className="service-card__desc">{service.description}</p>
-              <p className="service-card__hint">TAP TO EXPLORE THE DETAILS</p>
-            </button>
-          ))}
+            );
+          })}
         </div>
 
-        {/* Detail panel */}
-        <div
-          id="service-detail-panel"
-          className={`service-detail-panel${activeService ? ' service-detail-panel--open' : ''}`}
-          role="region"
-          aria-live="polite"
-        >
-          {ActiveComponent && <ActiveComponent />}
+        <div className={`service-detail-panel service-detail-panel--desktop${activeService ? ' service-detail-panel--open' : ''}`}>
+          {activeService &&
+            (() => {
+              const C = SERVICE_COMPONENTS[activeService];
+              return <C />;
+            })()}
         </div>
       </div>
     </section>

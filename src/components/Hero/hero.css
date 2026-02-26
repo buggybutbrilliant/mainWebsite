@@ -7,10 +7,12 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  overflow-x: hidden;
+  background-color: #020202;
 }
 
-/* Video Background */
-.hero__video {
+/* Background image */
+.hero__bg {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -18,15 +20,14 @@
   object-fit: cover;
   object-position: center;
   z-index: 0;
-  /* Fallback background if video fails */
-  background-color: #060610;
+  opacity: 0.85;
 }
 
 /* Dark overlay */
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(10, 10, 15, 0.65);
+  background: rgba(2, 2, 2, 0.45);
   z-index: 1;
 }
 
@@ -48,9 +49,10 @@
   position: relative;
   z-index: 3;
   text-align: center;
-  padding: var(--space-4);
-  max-width: 900px;
+  padding: var(--space-4) var(--space-2);
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 /* Eyebrow label */
@@ -70,13 +72,18 @@
 
 /* Main heading */
 .hero__title {
-  font-size: clamp(3.5rem, 12vw, 7rem);
   font-weight: 800;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+  line-height: 1;
+  letter-spacing: -0.03em;
   color: var(--text-primary);
   margin-bottom: var(--space-3);
   text-shadow: 0 0 80px rgba(0, 229, 255, 0.2);
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: clamp(1rem, 6.5vw, 5rem);
+  max-width: 100%;
+  display: block;
+  text-align: center;
 }
 
 /* Tagline */
@@ -107,6 +114,34 @@
 
   .hero__cta .btn {
     width: 100%;
+  }
+}
+
+@media (max-width: 639px) {
+  .hero__title {
+    font-size: clamp(2.2rem, 11vw, 3.2rem);
+    white-space: normal;
+    overflow: visible;
+    word-break: normal;
+    overflow-wrap: normal;
+    text-align: left;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+}
+
+.hero__title-line1,
+.hero__title-line2 {
+  display: inline;
+}
+
+@media (max-width: 639px) {
+  .hero__title-line1 {
+    display: block;
+  }
+
+  .hero__title-line2 {
+    display: block;
   }
 }
 
