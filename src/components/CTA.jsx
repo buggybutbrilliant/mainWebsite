@@ -22,7 +22,7 @@ export default function CTA() {
             <CustomButton
               label="Start a Project"
               variant="primary"
-              href="mailto:frombugs2brilliance@gmail.com?subject=Project%20Inquiry"
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=frombugs2brilliance@gmail.com"
             />
             <CustomButton
               label="See Our Work"
