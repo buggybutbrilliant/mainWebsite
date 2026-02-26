@@ -23,7 +23,10 @@ export default function Hero() {
         </span>
 
         <h1 className="hero__title anim-fadeInUp anim-delay-2">
-          Buggy<span className="text-accent">But</span>Brilliant
+          <span className="hero__title-line1">
+            Buggy<span className="text-accent">But</span>
+          </span>
+          <span className="hero__title-line2">Brilliant</span>
         </h1>
 
         <p className="hero__tagline anim-fadeInUp anim-delay-3">
