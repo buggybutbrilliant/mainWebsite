@@ -43,6 +43,26 @@ export default function Footer() {
               frombugs2brilliance@gmail.com
             </a>
           </div>
+          <br></br>
+          <div className="footer__contact">
+            <span className="footer__contact-label">WhatsApp us</span>
+            <a
+              href="https://wa.me/916290464921"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer__email"
+            >
+              +91 6290464921
+            </a>
+            <a
+              href="https://wa.me/918017007352"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer__email"
+            >
+              +91 8017007352
+            </a>
+          </div>
 
           {/* Social */}
           <div className="footer__social">
@@ -54,6 +74,24 @@ export default function Footer() {
               aria-label="GitHub"
             >
               <GithubIcon />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer__social-link"
+              aria-label="LinkedIn"
+            >
+              <LinkedinIcon />
+            </a>
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer__social-link"
+              aria-label="Instagram"
+            >
+              <InstagramIcon />
             </a>
           </div>
         </div>
