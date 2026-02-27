@@ -66,12 +66,16 @@
   display: flex;
   gap: var(--space-2);
   align-items: center;
+  justify-content: center;
 
 }
 
 @media (min-width: 768px) {
   .footer__social {
-    justify-content: flex-end;
+    grid-column: 1 / -1;
+    justify-content: center;
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--border-subtle);
   }
 }
 

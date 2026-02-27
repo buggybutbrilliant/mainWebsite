@@ -43,7 +43,6 @@ export default function Footer() {
               frombugs2brilliance@gmail.com
             </a>
           </div>
-          <br></br>
           <div className="footer__contact">
             <span className="footer__contact-label">WhatsApp us</span>
             <a
