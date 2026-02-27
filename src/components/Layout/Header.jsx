@@ -40,41 +40,39 @@ export default function Header() {
   };
 
   return (
-    <header className={`header${scrolled ? ' header--scrolled' : ''}`}>
-      <div className="header__inner container">
-        {/* Wordmark */}
-        <a href="#home" className="header__logo" onClick={e => handleNavClick(e, '#home')}>
-          Buggy<span className="text-accent">But</span>Brilliant
-        </a>
+    <>
+      <header className={`header${scrolled ? ' header--scrolled' : ''}`}>
+        <div className="header__inner container">
+          <a href="#home" className="header__logo" onClick={e => handleNavClick(e, '#home')}>
+            Buggy<span className="text-accent">But</span>Brilliant
+          </a>
 
-        {/* Desktop Nav */}
-        <nav className="header__nav" aria-label="Primary navigation">
-          {NAV_LINKS.map(link => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="header__nav-link"
-              onClick={e => handleNavClick(e, link.href)}
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+          <nav className="header__nav" aria-label="Primary navigation">
+            {NAV_LINKS.map(link => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="header__nav-link"
+                onClick={e => handleNavClick(e, link.href)}
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
 
-        {/* Hamburger */}
-        <button
-          className={`header__hamburger${menuOpen ? ' is-open' : ''}`}
-          onClick={() => setMenuOpen(prev => !prev)}
-          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={menuOpen}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-      </div>
+          <button
+            className={`header__hamburger${menuOpen ? ' is-open' : ''}`}
+            onClick={() => setMenuOpen(prev => !prev)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
+      </header>
 
-      {/* Mobile Nav Overlay */}
       <div
         className={`header__mobile-nav${menuOpen ? ' is-open' : ''}`}
         aria-hidden={!menuOpen}
@@ -85,14 +83,17 @@ export default function Header() {
               key={link.href}
               href={link.href}
               className="header__mobile-link"
-              style={{ animationDelay: menuOpen ? `${i * 0.07}s` : '0s' }}
+              style={{ animationDelay: menuOpen ? `${i * 0.08}s` : '0s' }}
               onClick={e => handleNavClick(e, link.href)}
             >
               {link.label}
             </a>
           ))}
         </nav>
+        <div className="header__mobile-brand">
+          Buggy<span>But</span>Brilliant
+        </div>
       </div>
-    </header>
+    </>
   );
 }

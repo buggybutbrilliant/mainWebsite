@@ -64,10 +64,13 @@ export default function ContactForm({ onClose }) {
 
               <div className="cf-section">
                 <h4 className="cf-section__title">Service Needed <span className="cf-required">*</span></h4>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
+                  Select all that apply
+                </p>
                 <div className="cf-chips">
-                  {['Website Development', 'Poster / Graphic Design', 'Video Editing', 'Multiple Services'].map(s => (
+                  {['Website Development', 'Poster / Graphic Design', 'Video Editing', 'Media Management'].map(s => (
                     <label key={s} className="cf-chip">
-                      <input type="radio" name="service" value={s} required />
+                      <input type="checkbox" name="service" value={s} />
                       <span>{s}</span>
                     </label>
                   ))}
@@ -82,7 +85,7 @@ export default function ContactForm({ onClose }) {
               <div className="cf-section">
                 <h4 className="cf-section__title">Estimated Budget</h4>
                 <div className="cf-chips">
-                  {['₹5k – ₹15k', '₹15k – ₹50k', '₹50k – ₹1L', '₹1L+', 'Not sure yet'].map(b => (
+                  {['₹2k-₹5k', '₹5k – ₹15k', '₹15k – ₹50k', '₹50k – ₹1L', '₹1L+', 'Not sure yet'].map(b => (
                     <label key={b} className="cf-chip">
                       <input type="radio" name="budget" value={b} />
                       <span>{b}</span>

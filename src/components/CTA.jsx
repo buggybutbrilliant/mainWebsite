@@ -1,7 +1,11 @@
+import { useState } from 'react';
+import ContactForm from './ContactForm/ContactForm';
 import CustomButton from './Buttons/CustomButton';
 import './cta.css';
 
 export default function CTA() {
+  const [formOpen, setFormOpen] = useState(false);
+
   return (
     <section className="section section--surface cta" id="cta">
       <div className="container">
@@ -22,7 +26,7 @@ export default function CTA() {
             <CustomButton
               label="Start a Project"
               variant="primary"
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=frombugs2brilliance@gmail.com"
+              onClick={() => setFormOpen(true)}
             />
             <CustomButton
               label="See Our Work"
@@ -32,6 +36,7 @@ export default function CTA() {
               }
             />
           </div>
+          {formOpen && <ContactForm onClose={() => setFormOpen(false)} />}
         </div>
       </div>
     </section>
