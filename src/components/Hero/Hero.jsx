@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import ContactForm from '../ContactForm/ContactForm';
 import CustomButton from '../Buttons/CustomButton';
 import './hero.css';
 
@@ -5,6 +7,8 @@ export default function Hero() {
   const handleScroll = () => {
     document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const [formOpen, setFormOpen] = useState(false);
 
   return (
     <section className="hero" id="home" aria-label="Hero">
@@ -47,11 +51,20 @@ export default function Hero() {
           />
         </div>
 
+        <div className="hero__know-us anim-fadeInUp anim-delay-5">
+          <button className="hero__know-pill" onClick={() => setFormOpen(true)}>
+            <span className="hero__know-pill-label">Already know us?</span>
+            <span className="hero__know-pill-cta">Let's get started →</span>
+          </button>
+        </div>
+
         {/* Scroll indicator */}
         <div className="hero__scroll-hint anim-fadeIn anim-delay-6" aria-hidden="true">
           <div className="hero__scroll-line" />
           <span>Scroll</span>
         </div>
+
+        {formOpen && <ContactForm onClose={() => setFormOpen(false)} />}
       </div>
     </section>
   );
