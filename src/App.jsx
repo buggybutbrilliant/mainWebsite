@@ -6,6 +6,7 @@ import Process from './components/Process';
 import Stack from './components/Stack';
 import CTA from './components/CTA';
 import Footer from './components/Layout/Footer';
+import ChatWidget from './components/ChatWidget/ChatWidget';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <CTA />
       </main>
       <Footer />
+      <ChatWidget />
     </>
   );
 }
