@@ -3,22 +3,54 @@ import './contact-form.css';
 
 export default function ContactForm({ onClose }) {
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);
-    await fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(data).toString(),
-    });
-    setSubmitted(true);
+    setLoading(true);
+    setError('');
+
+    const formData = new FormData(e.target);
+
+    // Honeypot — if this field has a value a bot filled it in
+    if (formData.get('botField')) {
+      setSubmitted(true);
+      return;
+    }
+
+    const payload = {
+      botField: formData.get('botField') || '',
+      name: formData.get('name'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      service: formData.getAll('service'),
+      details: formData.get('details'),
+      budget: formData.get('budget'),
+      timeline: formData.get('timeline'),
+      notes: formData.get('notes'),
+    };
+
+    try {
+      const res = await fetch('/api/contact-submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('Server error');
+      setSubmitted(true);
+    } catch {
+      setError('Something went wrong. Please try again or WhatsApp us directly.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="cf-backdrop" onClick={(e) => { if (e.target.classList.contains('cf-backdrop')) onClose(); }}>
       <div className="cf-modal" role="dialog" aria-modal="true">
         <button className="cf-close" onClick={onClose} aria-label="Close">✕</button>
+
         {submitted ? (
           <div className="cf-success">
             <span className="cf-success__icon">✓</span>
@@ -33,16 +65,10 @@ export default function ContactForm({ onClose }) {
               <h2 className="cf-title">Let's build something real.</h2>
               <p className="cf-subtitle">Fill this out and we'll get back to you within 24 hours.</p>
             </div>
-            <form
-              name="project-inquiry"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              className="cf-form"
-              onSubmit={handleSubmit}
-            >
-              <input type="hidden" name="form-name" value="project-inquiry" />
-              <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
+
+            <form className="cf-form" onSubmit={handleSubmit}>
+              {/* Honeypot — hidden from real users, bots fill it */}
+              <input type="text" name="botField" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
 
               <div className="cf-section">
                 <h4 className="cf-section__title">About You</h4>
@@ -64,9 +90,7 @@ export default function ContactForm({ onClose }) {
 
               <div className="cf-section">
                 <h4 className="cf-section__title">Service Needed <span className="cf-required">*</span></h4>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-                  Select all that apply
-                </p>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>Select all that apply</p>
                 <div className="cf-chips">
                   {['Website Development', 'Poster / Graphic Design', 'Video Editing', 'Media Management'].map(s => (
                     <label key={s} className="cf-chip">
@@ -111,7 +135,11 @@ export default function ContactForm({ onClose }) {
                 <textarea className="cf-textarea" name="notes" rows="3" placeholder="Anything else you'd like us to know..." />
               </div>
 
-              <button type="submit" className="cf-submit">Start the Project →</button>
+              {error && <p className="cf-error">{error}</p>}
+
+              <button type="submit" className="cf-submit" disabled={loading}>
+                {loading ? 'Sending...' : 'Start the Project →'}
+              </button>
             </form>
           </>
         )}

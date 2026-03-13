@@ -148,3 +148,20 @@
   transition: background var(--transition-fast);
 }
 .cf-success__btn:hover { background: var(--accent-glow); }
+
+.cf-error {
+  font-size: 0.8rem;
+  color: #ff6b6b;
+  text-align: center;
+  padding: 0.5rem;
+  border: 1px solid rgba(255,107,107,0.3);
+  border-radius: var(--radius-sm);
+  background: rgba(255,107,107,0.08);
+  margin-bottom: var(--space-2);
+}
+
+.cf-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}

@@ -1,0 +1,41 @@
+.stt {
+  position: fixed;
+  bottom: 7rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(10, 10, 15, 0.82);
+  border: 1px solid var(--border-accent);
+  color: var(--accent);
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 298;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.2s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.stt--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.stt:hover {
+  box-shadow: 0 0 20px var(--accent-glow-strong);
+  background: var(--accent-glow);
+}
+
+@media (max-width: 400px) {
+  .stt {
+    right: 1rem;
+    bottom: 6.5rem;
+  }
+}

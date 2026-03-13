@@ -5,11 +5,9 @@ import './chat-widget.css';
 const MODEL = 'arcee-ai/trinity-large-preview:free';
 
 async function callAI(messages, systemPrompt) {
-  const res = await fetch('/.netlify/functions/chat', {
+  const res = await fetch('/api/chat', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       model: MODEL,
       messages: [
@@ -22,8 +20,8 @@ async function callAI(messages, systemPrompt) {
   return data.choices?.[0]?.message?.content || 'Sorry, something went wrong.';
 }
 
-async function submitToNetlify(formData) {
-  await fetch('/.netlify/functions/chat-submit', {
+async function submitBooking(formData) {
+  await fetch('/api/chat-submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -63,8 +61,10 @@ export default function ChatWidget() {
         const reply = await callAI(newMessages, BUGGY_SYSTEM);
         if (reply.trim().toUpperCase() === 'HAND_OFF_TO_BRILLIANT') {
           setMode('brilliant');
-          const handoff = { role: 'brilliant', content: "Great, let me take it from here! 💡 I'm Brilliant. I'll help set up a quick call. First — what's your full name?" };
-          setMessages(prev => [...prev, handoff]);
+          setMessages(prev => [...prev, {
+            role: 'brilliant',
+            content: "Great, let me take it from here! 💡 I'm Brilliant. I'll help set up a quick call. First — what's your full name?"
+          }]);
         } else {
           setMessages(prev => [...prev, { role: 'buggy', content: reply }]);
         }
@@ -75,10 +75,10 @@ export default function ChatWidget() {
 
         const reply = await callAI(newMessages, BRILLIANT_SYSTEM);
         if (reply.trim().toUpperCase() === 'SUBMIT_FORM') {
-          await submitToNetlify(brilliantData);
-          setMessages(prev => [...prev, { 
-            role: 'brilliant', 
-            content: "✅ All done! Your meeting request has been sent. We'll reach out within 24 hours. 💡 Is there anything else I can help you with?" 
+          await submitBooking(newData);
+          setMessages(prev => [...prev, {
+            role: 'brilliant',
+            content: "✅ All done! Your meeting request has been sent. We'll reach out within 24 hours. 💡 Is there anything else I can help you with?"
           }]);
           setMode('buggy');
           setStep(0);
@@ -108,19 +108,27 @@ export default function ChatWidget() {
 
   return (
     <>
-      <button className={`cw-fab${open ? ' cw-fab--open' : ''}`} onClick={() => setOpen(p => !p)} aria-label="Chat with us">
-        {open ? <span className="cw-fab__close">✕</span> : <span className="cw-fab__icon">{mode === 'brilliant' ? '💡' : '🐞'}</span>}
+      <button
+        className={`cw-fab${open ? ' cw-fab--open' : ''}`}
+        onClick={() => setOpen(p => !p)}
+        aria-label="Chat with us"
+      >
+        {open
+          ? <span className="cw-fab__close">✕</span>
+          : <span className="cw-fab__icon">{mode === 'brilliant' ? '💡' : '🐞'}</span>
+        }
         {!open && <span className="cw-fab__pulse" />}
       </button>
 
       <div className={`cw-panel${open ? ' cw-panel--open' : ''}`} role="dialog" aria-label="Chat">
         <div className="cw-header">
           <div className="cw-header__avatar">{mode === 'brilliant' ? '💡' : '🐞'}</div>
-          <div>
+          <div className="cw-header__info">
             <div className="cw-header__name">{mode === 'brilliant' ? 'Brilliant' : 'Buggy'}</div>
             <div className="cw-header__status">
-              <span className="cw-status-dot" />{mode === 'done' ? 'Done' : 'Online'}
+              <span className="cw-status-dot" />Online
             </div>
+            <div className="cw-header__ai-label">✦ Powered by AI</div>
           </div>
           <button className="cw-reset" onClick={reset} title="Start over">↺</button>
         </div>

@@ -7,11 +7,9 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  overflow-x: hidden;
   background-color: #020202;
 }
 
-/* Background image */
 .hero__bg {
   position: absolute;
   inset: 0;
@@ -23,7 +21,6 @@
   opacity: 0.85;
 }
 
-/* Dark overlay */
 .hero__overlay {
   position: absolute;
   inset: 0;
@@ -31,7 +28,6 @@
   z-index: 1;
 }
 
-/* Radial accent glow */
 .hero__glow {
   position: absolute;
   bottom: -10%;
@@ -44,18 +40,41 @@
   pointer-events: none;
 }
 
-/* Content */
-.hero__content {
+/* ─── Two-column inner layout ─── */
+.hero__inner {
   position: relative;
   z-index: 3;
-  text-align: center;
-  padding: var(--space-4) var(--space-2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
   width: 100%;
-  max-width: 100%;
-  overflow: hidden;
+  max-width: 1200px;
+  padding: 0 var(--space-6);
+  gap: var(--space-6);
 }
 
-/* Eyebrow label */
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    padding: var(--space-4) var(--space-3);
+    text-align: center;
+  }
+}
+
+/* ─── Left column — text ─── */
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+@media (max-width: 900px) {
+  .hero__content {
+    align-items: center;
+  }
+}
+
 .hero__eyebrow {
   display: inline-block;
   font-size: 0.75rem;
@@ -70,74 +89,146 @@
   background-color: var(--accent-glow);
 }
 
-/* Main heading */
+/* ─── Title — 3 stacked lines ─── */
 .hero__title {
   font-weight: 800;
-  line-height: 1;
+  line-height: 0.95;
   letter-spacing: -0.03em;
   color: var(--text-primary);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
   text-shadow: 0 0 80px rgba(0, 229, 255, 0.2);
-  white-space: nowrap;
-  overflow: hidden;
-  font-size: clamp(1rem, 6.5vw, 5rem);
-  max-width: 100%;
-  display: block;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
- 
-.hero__title-line1,
-.hero__title-line2 {
-  display: inline;
-}
-
-@media (max-width: 639px) {
+@media (max-width: 900px) {
   .hero__title {
-    font-size: clamp(2rem, 10.5vw, 3rem);
-    white-space: normal;
-    overflow: visible;
-    text-align: left;
-  }
-
-  .hero__title-line1 {
-    display: block;
-  }
-
-  .hero__title-line2 {
-    display: block;
+    align-items: center;
   }
 }
 
-/* Tagline */
+.hero__title-line1,
+.hero__title-line2,
+.hero__title-line3 {
+  display: block;
+  font-size: clamp(3rem, 7vw, 6rem);
+}
+
 .hero__tagline {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
   color: var(--text-secondary);
   line-height: 1.6;
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-4);
   font-weight: 400;
 }
 
-/* CTA buttons */
 .hero__cta {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: var(--space-2);
   flex-wrap: wrap;
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-4);
 }
 
-/* Mobile: full-width buttons */
-@media (max-width: 640px) {
+@media (max-width: 500px) {
   .hero__cta {
     flex-direction: column;
     width: 100%;
   }
-
   .hero__cta .btn {
     width: 100%;
   }
+}
+
+.hero__know-us {
+  display: flex;
+}
+
+.hero__know-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--accent);
+  background: var(--accent);
+  cursor: pointer;
+  font-family: var(--font-body);
+  min-height: 44px;
+  position: relative;
+  overflow: visible;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.hero__know-pill:hover {
+  transform: scale(1.04);
+  background: #33eaff;
+  border-color: #33eaff;
+  box-shadow: 0 0 32px var(--accent-glow-strong);
+}
+
+.hero__know-pill:active { transform: scale(0.97); }
+
+.hero__know-pill-label {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #0a0a0f;
+}
+
+.hero__know-pill-cta {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #0a0a0f;
+  letter-spacing: 0.01em;
+}
+
+.hero__know-pill::before,
+.hero__know-pill::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  width: 0;
+  border-radius: 2px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero__know-pill::before {
+  right: calc(100% + 6px);
+  background: linear-gradient(to left, var(--accent), transparent);
+}
+
+.hero__know-pill::after {
+  left: calc(100% + 6px);
+  background: linear-gradient(to right, var(--accent), transparent);
+}
+
+.hero__know-pill:hover::before {
+  animation: boltShootLeft 0.7s ease-out forwards;
+}
+
+.hero__know-pill:hover::after {
+  animation: boltShootRight 0.7s ease-out forwards;
+}
+
+@keyframes boltShootLeft {
+  0%   { width: 0px; opacity: 0; }
+  15%  { opacity: 1; }
+  50%  { width: 70px; opacity: 0.9; }
+  100% { width: 90px; opacity: 0; }
+}
+
+@keyframes boltShootRight {
+  0%   { width: 0px; opacity: 0; }
+  15%  { opacity: 1; }
+  50%  { width: 70px; opacity: 0.9; }
+  100% { width: 90px; opacity: 0; }
 }
 
 /* Scroll hint */
@@ -146,11 +237,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-1);
-  position: relative;
-  bottom: unset;
-  left: unset;
-  transform: none;
-  margin-top: var(--space-3);
+  margin-top: var(--space-4);
 }
 
 .hero__scroll-hint span {
@@ -167,116 +254,118 @@
   animation: lineGrow 1.5s ease infinite alternate;
 }
 
-.hero__know-us {
-  margin-top: var(--space-3);
-  display: flex;
-  justify-content: center;
+@keyframes lineGrow {
+  0%   { transform: scaleY(0.6); opacity: 0.4; }
+  100% { transform: scaleY(1);   opacity: 1; }
 }
 
-.hero__know-pill { 
-  display: inline-flex; 
-  align-items: center; 
-  gap: 0.6rem; 
-  padding: 0.75rem 1.75rem; 
-  border-radius: var(--radius-md); 
-  border: 2px solid var(--accent); 
-  background: var(--accent); 
-  cursor: pointer; 
-  font-family: var(--font-body); 
-  min-height: 44px; 
-  position: relative; 
-  overflow: visible; 
-  transition: 
-    transform var(--transition-fast), 
-    box-shadow var(--transition-fast), 
-    background-color var(--transition-fast); 
-} 
- 
-.hero__know-pill:hover { 
-  transform: scale(1.04); 
-  background: #33eaff; 
-  border-color: #33eaff; 
-  box-shadow: 0 0 32px var(--accent-glow-strong); 
-} 
- 
-.hero__know-pill:active { transform: scale(0.97); } 
- 
-.hero__know-pill:focus-visible { 
-  outline: 2px solid var(--accent); 
-  outline-offset: 3px; 
-} 
+/* ─── Right column — Spline ─── */
+.hero__spline-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 400px;
+}
 
-.hero__know-pill-label { 
-  font-size: 0.875rem; 
-  font-weight: 400; 
-  color: #0a0a0f; 
-} 
- 
-.hero__know-pill-cta { 
-  font-size: 0.875rem; 
-  font-weight: 700; 
-  color: #0a0a0f; 
-  letter-spacing: 0.01em; 
-} 
+@media (max-width: 900px) {
+  .hero__spline-col {
+    display: none;
+  }
+}
 
-.hero__know-pill::before, 
-.hero__know-pill::after { 
-  content: ''; 
-  position: absolute; 
-  top: 50%; 
-  transform: translateY(-50%); 
-  height: 2px; 
-  width: 0; 
-  border-radius: 2px; 
-  opacity: 0; 
-  pointer-events: none; 
-  transition: none; 
-} 
- 
-.hero__know-pill::before { 
-  right: calc(100% + 6px); 
-  left: auto; 
-  background: linear-gradient(to left, var(--accent), transparent); 
-  transform-origin: right center; 
-  transform: translateY(-50%); 
-} 
- 
-.hero__know-pill::after { 
-  left: calc(100% + 6px); 
-  right: auto; 
-  background: linear-gradient(to right, var(--accent), transparent); 
-  transform-origin: left center; 
-  transform: translateY(-50%); 
-} 
- 
-.hero__know-pill:hover::before { 
-  animation: boltShootLeft 0.7s ease-out forwards; 
-} 
- 
-.hero__know-pill:hover::after { 
-  animation: boltShootRight 0.7s ease-out forwards; 
-} 
+.hero__spline-wrapper {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
 
-@keyframes boltShootLeft { 
-  0%   { width: 0px; opacity: 0; } 
-  15%  { opacity: 1; } 
-  50%  { width: 70px; opacity: 0.9; } 
-  70%  { opacity: 0.5; } 
-  100% { width: 90px; opacity: 0; } 
-} 
- 
-@keyframes boltShootRight { 
-  0%   { width: 0px; opacity: 0; } 
-  15%  { opacity: 1; } 
-  50%  { width: 70px; opacity: 0.9; } 
-  70%  { opacity: 0.5; } 
-  100% { width: 90px; opacity: 0; } 
-} 
- 
-@keyframes boltFlicker { 
-  0%, 100% { opacity: 1; } 
-  25%       { opacity: 0.3; } 
-  50%       { opacity: 1; } 
-  75%       { opacity: 0.5; } 
-} 
+.hero__spline-wrapper--loaded {
+  opacity: 1;
+}
 
+.hero__spline {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.hero__spline-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 15, 0.4);
+  border-radius: var(--radius-lg);
+}
+
+.hero__spline-loader::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--border-subtle);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Skateboard game button ─── */
+.hero__skate-btn {
+  position: absolute;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: rgba(10, 10, 15, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+  overflow: hidden;
+}
+
+.hero__skate-btn:hover {
+  border-color: var(--border-accent);
+  background: rgba(10, 10, 15, 0.85);
+  opacity: 1;
+}
+
+.hero__skate-icon {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.hero__skate-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+  max-width: 0;
+  overflow: hidden;
+  transition: max-width 0.4s ease, color 0.2s ease;
+}
+
+.hero__skate-btn:hover .hero__skate-label {
+  max-width: 200px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 500px) {
+  .hero__skate-btn {
+    bottom: var(--space-3);
+    left: var(--space-2);
+  }
+}

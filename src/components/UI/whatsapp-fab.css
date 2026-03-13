@@ -1,0 +1,57 @@
+.wa-fab-wrapper {
+  position: fixed;
+  bottom: 2rem;
+  right: 5.5rem;
+  z-index: 300;
+}
+
+.wa-fab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  text-decoration: none;
+}
+
+.wa-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 32px rgba(37, 211, 102, 0.6);
+  opacity: 1;
+}
+
+.wa-fab__tooltip {
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(10, 10, 15, 0.92);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.wa-fab:hover .wa-fab__tooltip {
+  opacity: 1;
+}
+
+@media (max-width: 400px) {
+  .wa-fab-wrapper {
+    right: 5rem;
+    bottom: 1.5rem;
+  }
+}
